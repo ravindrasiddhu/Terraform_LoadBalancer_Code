@@ -68,6 +68,8 @@ module "frontend_vm2" {
   admin_password       = "Password@123!"
 }
 
+
+# lb, frontend_ip-config, probe, backend address pool, rule
 module "name_azurerm_loadbalancer" {
   depends_on                = [module.azurerm_public_ip, module.frontend_vm1, module.frontend_vm2]
   source                    = "../modules/azurerm_loadbalancer"
@@ -77,3 +79,21 @@ module "name_azurerm_loadbalancer" {
   probe_name                = "ssh-running-probe"
   lb_rule_name              = "LBRule"
 }
+
+# module "pinki2lb_jod_yojna" {
+#   source                = "../modules/azurerm_nic_lb_association"
+#   nic_name              = "frontend-nic"
+#   resource_group_name   = "rg_main_ravin"
+#   lb_name               = "TestLoadBalancer"
+#   lbap_name             = "BackEndAddressPool"
+#   ip_configuration_name = "internal"
+# }
+
+# module "chinki2lb_jod_yojna" {
+#   source                = "../modules/azurerm_nic_lb_association"
+#   nic_name              = "frontend-nic1"
+#   resource_group_name   = "rg_main_ravin"
+#   lb_name               = "TestLoadBalancer"
+#   lbap_name             = "BackEndAddressPool"
+#   ip_configuration_name = "internal"
+# }
